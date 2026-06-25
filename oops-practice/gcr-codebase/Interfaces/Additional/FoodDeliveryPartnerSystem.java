@@ -40,7 +40,7 @@ class DeliveryExecutive implements FoodDelivery, GroceryDelivery {
 	}
 
 	void processAllDeliveries() {
-		System.out.println("=== Delivery Service ===\n");
+		System.out.println("Delivery Service\n");
 		deliverFood("Pizza from Dominos to " + customers[0]);
 		trackOrder();
 		System.out.println();
@@ -54,7 +54,7 @@ class DeliveryExecutive implements FoodDelivery, GroceryDelivery {
 
 class FoodDeliveryPartnerSystem {
 	public static void main(String[] args) {
-		String[] customers = { "Alice", "Bob", "Charlie" };
+		String[] customers = { "Sakshi", "Bobby", "Charu" };
 		DeliveryExecutive executive = new DeliveryExecutive("EXE001", customers);
 		executive.processAllDeliveries();
 	}

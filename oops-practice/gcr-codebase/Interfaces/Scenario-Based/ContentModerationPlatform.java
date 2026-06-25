@@ -41,7 +41,7 @@ class ContentModerator implements TextModeration, SpamDetection {
 	}
 
 	void analyzePosts(String[] posts) {
-		System.out.println("=== Content Moderation Results ===\n");
+		System.out.println("Content Moderation Results\n");
 		for (String post : posts) {
 			boolean isOffensive = !moderateText(post);
 			boolean isSpam = !detectSpam(post);

@@ -89,15 +89,15 @@ class StreamingPlatformSubscriptionAnalyzer {
 
 	public static void main(String[] args) {
 		Subscription[] subscriptions = {
-			new BasicPlan("Alice", "SUB001"),
-			new PremiumPlan("Bob", "SUB002"),
-			new FamilyPlan("Charlie", "SUB003"),
-			new BasicPlan("Diana", "SUB004"),
-			new PremiumPlan("Eve", "SUB005"),
-			new FamilyPlan("Frank", "SUB006")
+			new BasicPlan("Sakshi", "SUB001"),
+			new PremiumPlan("Bobby", "SUB002"),
+			new FamilyPlan("Charu", "SUB003"),
+			new BasicPlan("Dia", "SUB004"),
+			new PremiumPlan("Luv", "SUB005"),
+			new FamilyPlan("jai", "SUB006")
 		};
 
-		System.out.println("=== Streaming Platform Subscription Analysis ===\n");
+		System.out.println("Streaming Platform Subscription Analysis\n");
 
 		System.out.println("All Subscriptions:");
 		for (Subscription sub : subscriptions) {
@@ -107,7 +107,7 @@ class StreamingPlatformSubscriptionAnalyzer {
 
 		System.out.println("Total Monthly Revenue: " + calculateTotalRevenue(subscriptions));
 
-		displayByPrefix('A', subscriptions);
+		displayByPrefix('S', subscriptions);
 
 		Subscription searched = searchById("SUB003", subscriptions);
 		if (searched != null) {

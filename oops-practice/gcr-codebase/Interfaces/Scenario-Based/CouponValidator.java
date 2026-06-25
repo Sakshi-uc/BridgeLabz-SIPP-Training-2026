@@ -27,7 +27,7 @@ class ShoppingCart implements CouponValidator {
 	}
 
 	void checkCoupons(String[] codestoCheck) {
-		System.out.println("=== Coupon Validation ===\n");
+		System.out.println("Coupon Validation\n");
 		for (String code : codestoCheck) {
 			boolean valid = validateCoupon(code);
 			System.out.println("Code: " + code + " -> " + (valid ? "VALID" : "INVALID"));

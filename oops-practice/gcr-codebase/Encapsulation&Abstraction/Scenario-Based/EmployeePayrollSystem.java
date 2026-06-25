@@ -91,10 +91,10 @@ class EmployeePayrollSystem {
 		Employee fullTime = new FullTimeEmployee("FT001", "Alice Johnson", 5000);
 		Employee partTime = new PartTimeEmployee("PT001", "Bob Smith", 80, 25);
 
-		System.out.println("=== Full Time Employee ===");
+		System.out.println("Full Time Employee");
 		fullTime.displayEmployeeInfo();
 
-		System.out.println("\n=== Part Time Employee ===");
+		System.out.println("\nPart Time Employee");
 		partTime.displayEmployeeInfo();
 	}
 }

@@ -79,11 +79,11 @@ class OnlineFoodDeliverySystem {
 		FoodItem veg = new VegItem("Vegetable Biryani", 250, 2);
 		FoodItem nonVeg = new NonVegItem("Chicken Biryani", 350, 1);
 
-		System.out.println("=== Vegetarian Item ===");
+		System.out.println("Vegetarian Item");
 		veg.displayItemDetails();
 		System.out.printf("Total Price: %.2f\n\n", veg.calculateTotalPrice());
 
-		System.out.println("=== Non-Vegetarian Item ===");
+		System.out.println("Non-Vegetarian Item");
 		nonVeg.displayItemDetails();
 		System.out.printf("Total Price: %.2f\n", nonVeg.calculateTotalPrice());
 	}

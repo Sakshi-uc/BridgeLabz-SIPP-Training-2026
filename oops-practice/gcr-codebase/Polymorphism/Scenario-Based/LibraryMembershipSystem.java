@@ -61,10 +61,10 @@ class SmartLibraryMembershipSystem {
 
 	public static void main(String[] args) {
 		LibraryMember[] members = {
-			new StudentMember("Alice Johnson", "STU001"),
-			new FacultyMember("Dr. Smith", "FAC001"),
-			new GuestMember("Bob Wilson", "GUS001"),
-			new StudentMember("Carol White", "STU002")
+			new StudentMember("Sakshi", "STU001"),
+			new FacultyMember("Dr. Ambuj", "FAC001"),
+			new GuestMember("Bobby", "GUS001"),
+			new StudentMember("Charu", "STU002")
 		};
 
 		int overdueDays = 5;
@@ -75,7 +75,7 @@ class SmartLibraryMembershipSystem {
 			System.out.printf("Fine: %.2f\n\n", member.calculateFine(overdueDays));
 		}
 
-		System.out.println("=== Search Member ===");
+		System.out.println("Search Member");
 		LibraryMember found = searchMember("FAC001", members);
 		if (found != null) {
 			found.displayMember();

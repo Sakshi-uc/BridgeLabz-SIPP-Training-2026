@@ -48,14 +48,14 @@ class PushNotification extends Notification {
 class SmartNotificationSystem {
 	public static void main(String[] args) {
 		Notification[] notifications = {
-			new EmailNotification("Alice", "Your order has been confirmed"),
-			new SMSNotification("Bob", "Your delivery is on the way"),
-			new PushNotification("Charlie", "Flash sale happening now!"),
-			new EmailNotification("Diana", "Password reset link sent"),
-			new SMSNotification("Eve", "OTP: 123456")
+			new EmailNotification("Sakshi", "Your order has been confirmed"),
+			new SMSNotification("Bobby", "Your delivery is on the way"),
+			new PushNotification("Charu", "Flash sale happening now!"),
+			new EmailNotification("Dia", "Password reset link sent"),
+			new SMSNotification("jai", "OTP: 123456")
 		};
 
-		System.out.println("=== Sending Notifications ===\n");
+		System.out.println("Sending Notifications\n");
 		for (Notification notification : notifications) {
 			notification.sendNotification();
 		}

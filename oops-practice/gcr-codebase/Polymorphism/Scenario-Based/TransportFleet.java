@@ -66,7 +66,7 @@ class TransportFleet {
 		};
 
 		int distance = 100;
-		System.out.println("=== Fuel Cost for " + distance + "km ===\n");
+		System.out.println("Fuel Cost for " + distance + "km \n");
 
 		for (Vehicle vehicle : fleet) {
 			vehicle.displayInfo();

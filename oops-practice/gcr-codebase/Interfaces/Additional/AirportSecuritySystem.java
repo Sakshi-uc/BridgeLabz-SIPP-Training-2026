@@ -63,13 +63,13 @@ class AirportSecurityDemo {
 		security.displaySecurityGuidelines();
 		System.out.println();
 
-		System.out.println("=== Passenger 1 ===");
+		System.out.println("Passenger 1");
 		security.canBoard("John Doe", "AB1234567");
 
-		System.out.println("\n=== Passenger 2 ===");
+		System.out.println("\nPassenger 2");
 		security.canBoard("Jane Smith", "XY9999999");
 
-		System.out.println("\n=== Passenger 3 ===");
+		System.out.println("\nPassenger 3");
 		security.canBoard("Bob Wilson", "CD2345678");
 	}
 }

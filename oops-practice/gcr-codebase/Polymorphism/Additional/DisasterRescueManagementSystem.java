@@ -79,7 +79,7 @@ class DisasterRescueManagementSystem {
 			new MedicalTeam("MED003", "Suburb")
 		};
 
-		System.out.println("=== Disaster Rescue Management System ===\n");
+		System.out.println("Disaster Rescue Management System\n");
 
 		System.out.println("All Teams Performing Duties:");
 		int medical = 0, fire = 0, food = 0;
@@ -90,7 +90,7 @@ class DisasterRescueManagementSystem {
 			else if (team instanceof FoodSupplyTeam) food++;
 		}
 
-		System.out.println("\n=== Deployment Count ===");
+		System.out.println("\nDeployment Count");
 		System.out.println("Medical Teams: " + medical);
 		System.out.println("Fire Rescue Teams: " + fire);
 		System.out.println("Food Supply Teams: " + food);

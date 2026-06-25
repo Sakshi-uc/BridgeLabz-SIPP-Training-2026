@@ -115,15 +115,15 @@ class VehicleRentalSystem {
 
 		int days = 5;
 
-		System.out.println("=== Car Rental ===");
+		System.out.println("Car Rental");
 		car.displayVehicleDetails();
 		System.out.printf("Cost for %d days: %.2f\n\n", days, car.calculateRentalCost(days));
 
-		System.out.println("=== Bike Rental ===");
+		System.out.println("Bike Rental");
 		bike.displayVehicleDetails();
 		System.out.printf("Cost for %d days: %.2f\n\n", days, bike.calculateRentalCost(days));
 
-		System.out.println("=== Truck Rental ===");
+		System.out.println("Truck Rental");
 		truck.displayVehicleDetails();
 		System.out.printf("Cost for %d days: %.2f\n", days, truck.calculateRentalCost(days));
 	}

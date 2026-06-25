@@ -53,10 +53,10 @@ class SmartHomeDevices {
 		Thermostat thermostat = new Thermostat("THM001", "Active", 22.5);
 		Thermostat thermostat2 = new Thermostat("THM002", "Standby", 20.0);
 
-		System.out.println("=== Thermostat 1 ===");
+		System.out.println("Thermostat 1");
 		thermostat.displayStatus();
 
-		System.out.println("\n=== Thermostat 2 ===");
+		System.out.println("\nThermostat 2");
 		thermostat2.displayStatus();
 	}
 }

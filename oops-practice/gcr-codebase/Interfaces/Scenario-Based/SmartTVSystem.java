@@ -53,7 +53,7 @@ class SmartTV implements StreamingService, GamingService {
 	}
 
 	void displayAllContent() {
-		System.out.println("=== SmartTV Content ===\n");
+		System.out.println("SmartTV Content\n");
 		showSubscriptionDetails();
 		System.out.println();
 		playMovie();

@@ -98,7 +98,7 @@ class ShapeHierarchy {
 			new Triangle(3, 4, 5)
 		};
 
-		System.out.println("=== Shape Area Report ===\n");
+		System.out.println("Shape Area Report\n");
 		for (Shape shape : shapes) {
 			System.out.println(shape.getClass().getSimpleName() + ":");
 			System.out.printf("  Area: %.2f\n", shape.area());

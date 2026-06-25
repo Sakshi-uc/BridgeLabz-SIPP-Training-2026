@@ -111,11 +111,11 @@ class HospitalPatientManagement {
 		Patient inPatient = new InPatient("IP001", "Alice Brown", 35, 5000, 10000);
 		Patient outPatient = new OutPatient("OP001", "Bob Wilson", 42, 500, 2000);
 
-		System.out.println("=== In-Patient ===");
+		System.out.println("In-Patient");
 		inPatient.displayPatientDetails();
 		System.out.printf("Bill: %.2f\n\n", inPatient.calculateBill());
 
-		System.out.println("=== Out-Patient ===");
+		System.out.println("Out-Patient");
 		outPatient.displayPatientDetails();
 		System.out.printf("Bill: %.2f\n", outPatient.calculateBill());
 	}

@@ -77,13 +77,13 @@ class VehicleManagement {
 		ElectricVehicle ev = new ElectricVehicle(200, "Tesla Model 3", 75);
 		PetrolVehicle pv = new PetrolVehicle(220, "BMW X5", 80);
 
-		System.out.println("=== Electric Vehicle ===");
+		System.out.println("Electric Vehicle");
 		ev.displayInfo();
 
-		System.out.println("\n=== Petrol Vehicle ===");
+		System.out.println("\nPetrol Vehicle");
 		pv.displayInfo();
 
-		System.out.println("\n=== Interface Check ===");
+		System.out.println("\nInterface Check");
 		System.out.println("pv implements Refuelable: " + (pv instanceof Refuelable));
 	}
 }

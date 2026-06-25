@@ -52,10 +52,10 @@ class LibraryBooks {
 		Author book1 = new Author("Clean Code", 2008, "Robert C. Martin", "Expert in software craftsmanship");
 		Author book2 = new Author("Design Patterns", 1994, "Gang of Four", "Pioneers in design patterns");
 
-		System.out.println("=== Book 1 ===");
+		System.out.println("Book 1:");
 		book1.displayInfo();
 
-		System.out.println("\n=== Book 2 ===");
+		System.out.println("\nBook 2:");
 		book2.displayInfo();
 	}
 }

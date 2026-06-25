@@ -25,7 +25,7 @@ class FitnessDevice implements Trackable, Reportable, Notifiable {
 
 	@Override
 	public void generateReport() {
-		System.out.println("=== Fitness Report ===");
+		System.out.println("Fitness Report");
 		System.out.println("Total activities: " + activities.size());
 		for (String activity : activities) {
 			System.out.println("- " + activity);

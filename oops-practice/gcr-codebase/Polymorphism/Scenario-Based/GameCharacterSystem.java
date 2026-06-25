@@ -55,7 +55,7 @@ class AdventureGameCharacterSystem {
 			else if (character instanceof Archer) archers++;
 		}
 
-		System.out.println("\n=== Battle Statistics ===");
+		System.out.println("\nBattle Statistics");
 		System.out.println("Warriors: " + warriors);
 		System.out.println("Mages: " + mages);
 		System.out.println("Archers: " + archers);

@@ -73,10 +73,10 @@ class UniversitySystem {
 	public static void main(String[] args) {
 		GradStudent grad = new GradStudent("Emily Davis", 24, "GS001", 3.9, "ML Algorithms");
 
-		System.out.println("=== Demonstrating IS-A Relationship ===");
+		System.out.println("Demonstrating IS-A Relationship");
 		System.out.println(grad.toString());
 
-		System.out.println("\n=== Type Checking ===");
+		System.out.println("\nType Checking");
 		System.out.println("grad instanceof GradStudent: " + (grad instanceof GradStudent));
 		System.out.println("grad instanceof Student: " + (grad instanceof Student));
 		System.out.println("grad instanceof Person: " + (grad instanceof Person));

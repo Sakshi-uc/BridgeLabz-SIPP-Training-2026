@@ -16,7 +16,7 @@ interface TemperatureMonitor {
 }
 
 class HealthMonitoringSystem implements HeartRateMonitor, TemperatureMonitor {
-	private String[] validPatients = { "P10001", "P10002", "P10003", "P10004" };
+	private String[] validPatients = { "P1", "P2", "P3", "P4" };
 
 	@Override
 	public void monitorHeartRate(String patientId) {
@@ -42,13 +42,13 @@ class HealthMonitoringSystem implements HeartRateMonitor, TemperatureMonitor {
 	}
 
 	void monitorPatient(String patientId) {
-		System.out.println("\n=== Patient " + patientId + " ===");
+		System.out.println("\nPatient " + patientId );
 		monitorHeartRate(patientId);
 		monitorTemperature(patientId);
 	}
 
 	void generateHealthReport(String[] patientIds) {
-		System.out.println("=== Daily Health Report ===\n");
+		System.out.println("Daily Health Report\n");
 		displayHealthTips();
 		for (String id : patientIds) {
 			monitorPatient(id);
@@ -59,7 +59,7 @@ class HealthMonitoringSystem implements HeartRateMonitor, TemperatureMonitor {
 class HealthcareMonitoringDemo {
 	public static void main(String[] args) {
 		HealthMonitoringSystem system = new HealthMonitoringSystem();
-		String[] patients = { "P10001", "P10002", "P10003" };
+		String[] patients = { "P1", "P2", "P3" };
 		system.generateHealthReport(patients);
 	}
 }

@@ -81,15 +81,15 @@ class LibraryManagementSystem {
 		LibraryItem magazine = new Magazine("M001", "Tech Weekly", "Tech Team");
 		LibraryItem dvd = new DVD("D001", "Programming Basics", "Edu Channel");
 
-		System.out.println("=== Book ===");
+		System.out.println("Book");
 		book.displayItemDetails();
 		System.out.println("Loan Duration: " + book.getLoanDuration() + " days\n");
 
-		System.out.println("=== Magazine ===");
+		System.out.println("Magazine");
 		magazine.displayItemDetails();
 		System.out.println("Loan Duration: " + magazine.getLoanDuration() + " days\n");
 
-		System.out.println("=== DVD ===");
+		System.out.println("DVD");
 		dvd.displayItemDetails();
 		System.out.println("Loan Duration: " + dvd.getLoanDuration() + " days");
 	}

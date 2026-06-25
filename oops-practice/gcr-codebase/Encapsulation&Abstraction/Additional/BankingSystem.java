@@ -104,16 +104,16 @@ class CurrentAccount extends BankAccount {
 
 class BankingSystem {
 	public static void main(String[] args) {
-		BankAccount savings = new SavingsAccount("SAV001", "John Doe", 10000, 5);
-		BankAccount current = new CurrentAccount("CUR001", "Jane Smith", 20000, 3);
+		BankAccount savings = new SavingsAccount("S1", "sakshi", 10000, 5);
+		BankAccount current = new CurrentAccount("C1", "Jai", 20000, 3);
 
-		System.out.println("=== Savings Account ===");
+		System.out.println("Savings Account");
 		savings.displayAccountDetails();
 		savings.deposit(2000);
 		savings.withdraw(1000);
 		System.out.printf("Interest: %.2f\n\n", savings.calculateInterest());
 
-		System.out.println("=== Current Account ===");
+		System.out.println("Current Account");
 		current.displayAccountDetails();
 		current.deposit(5000);
 		current.withdraw(2000);

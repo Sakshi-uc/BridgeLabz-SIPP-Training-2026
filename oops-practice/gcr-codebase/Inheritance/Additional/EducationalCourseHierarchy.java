@@ -84,13 +84,13 @@ class EducationalCourseHierarchy {
 		OnlineCourse online = new OnlineCourse("Advanced Java", 80, "Udemy", true);
 		PaidOnlineCourse paid = new PaidOnlineCourse("Java Mastery", 120, "Coursera", true, 9999, 20);
 
-		System.out.println("=== Basic Course ===");
+		System.out.println("Basic Course");
 		basic.displayInfo();
 
-		System.out.println("\n=== Online Course ===");
+		System.out.println("\nOnline Course");
 		online.displayInfo();
 
-		System.out.println("\n=== Paid Online Course ===");
+		System.out.println("\nPaid Online Course");
 		paid.displayInfo();
 	}
 }

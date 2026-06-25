@@ -80,13 +80,13 @@ class OnlineRetailOrders {
 		ShippedOrder shipped = new ShippedOrder("ORD002", "2024-06-21", "TRK12345");
 		DeliveredOrder delivered = new DeliveredOrder("ORD003", "2024-06-22", "TRK12346", "2024-06-25");
 
-		System.out.println("=== Order Placed ===");
+		System.out.println("Order Placed");
 		order.displayOrder();
 
-		System.out.println("\n=== Order Shipped ===");
+		System.out.println("\nOrder Shipped");
 		shipped.displayOrder();
 
-		System.out.println("\n=== Order Delivered ===");
+		System.out.println("\nOrder Delivered");
 		delivered.displayOrder();
 	}
 }
