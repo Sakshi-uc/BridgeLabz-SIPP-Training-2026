@@ -1,17 +1,11 @@
 import java.util.*;
 
-/**
- * Additional 1. Music Playlist Recommendation Engine
- * Uses LinkedList<String> to store recently played songs (most recent at the top).
- * Keeps only the latest 10 songs.
- */
 public class MusicPlaylistRecommendationEngine {
 
-    private static final int MAX_SIZE = 10;
-    private LinkedList<String> recentlyPlayed = new LinkedList<>();
+    static final int MAX_SIZE = 10;
+    LinkedList<String> recentlyPlayed = new LinkedList<>();
 
-    public void playSong(String song) {
-        // Remove if already exists so it moves to the top instead of duplicating
+    void playSong(String song) {
         recentlyPlayed.remove(song);
         recentlyPlayed.addFirst(song);
 
@@ -22,16 +16,16 @@ public class MusicPlaylistRecommendationEngine {
         System.out.println("Now playing: " + song);
     }
 
-    public void searchSong(String song) {
+    void searchSong(String song) {
         if (recentlyPlayed.contains(song)) {
             System.out.println(song + " is in the recently played list.");
         } else {
-            System.out.println(song + " was NOT found in the recently played list.");
+            System.out.println(song + " was not found in the recently played list.");
         }
     }
 
-    public void displayHistory() {
-        System.out.println("\n--- Recently Played (most recent first) ---");
+    void displayHistory() {
+        System.out.println("\n--- Recently Played ---");
         if (recentlyPlayed.isEmpty()) {
             System.out.println("No songs played yet.");
         } else {
@@ -48,31 +42,25 @@ public class MusicPlaylistRecommendationEngine {
         int choice;
 
         do {
-            System.out.println("\n===== Music Playlist Recommendation Engine =====");
-            System.out.println("1. Play a Song");
+            System.out.println("\n1. Play a Song");
             System.out.println("2. Search for a Song");
             System.out.println("3. Display Recently Played History");
             System.out.println("4. Exit");
             System.out.print("Enter choice: ");
             choice = Integer.parseInt(sc.nextLine().trim());
 
-            switch (choice) {
-                case 1:
-                    System.out.print("Enter song name: ");
-                    engine.playSong(sc.nextLine());
-                    break;
-                case 2:
-                    System.out.print("Enter song name to search: ");
-                    engine.searchSong(sc.nextLine());
-                    break;
-                case 3:
-                    engine.displayHistory();
-                    break;
-                case 4:
-                    System.out.println("Exiting Music Playlist Engine. Goodbye!");
-                    break;
-                default:
-                    System.out.println("Invalid choice.");
+            if (choice == 1) {
+                System.out.print("Enter song name: ");
+                engine.playSong(sc.nextLine());
+            } else if (choice == 2) {
+                System.out.print("Enter song name to search: ");
+                engine.searchSong(sc.nextLine());
+            } else if (choice == 3) {
+                engine.displayHistory();
+            } else if (choice == 4) {
+                System.out.println("Bye!");
+            } else {
+                System.out.println("Invalid choice.");
             }
         } while (choice != 4);
 

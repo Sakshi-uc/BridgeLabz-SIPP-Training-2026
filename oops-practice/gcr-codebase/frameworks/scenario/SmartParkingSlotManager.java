@@ -1,14 +1,10 @@
 import java.util.*;
 
-/**
- * 2. Smart Parking Slot Manager
- * Uses ArrayList<String> to store vehicle registration numbers currently parked.
- */
 public class SmartParkingSlotManager {
 
-    private ArrayList<String> parkedVehicles = new ArrayList<>();
+    ArrayList<String> parkedVehicles = new ArrayList<>();
 
-    public void enterParking(String regNumber) {
+    void enterParking(String regNumber) {
         if (parkedVehicles.contains(regNumber)) {
             System.out.println("Vehicle " + regNumber + " is already parked!");
             return;
@@ -17,7 +13,7 @@ public class SmartParkingSlotManager {
         System.out.println("Vehicle " + regNumber + " has entered the parking area.");
     }
 
-    public void exitParking(String regNumber) {
+    void exitParking(String regNumber) {
         if (parkedVehicles.remove(regNumber)) {
             System.out.println("Vehicle " + regNumber + " has exited the parking area.");
         } else {
@@ -25,15 +21,15 @@ public class SmartParkingSlotManager {
         }
     }
 
-    public void searchVehicle(String regNumber) {
+    void searchVehicle(String regNumber) {
         if (parkedVehicles.contains(regNumber)) {
             System.out.println("Vehicle " + regNumber + " is currently parked.");
         } else {
-            System.out.println("Vehicle " + regNumber + " is NOT currently parked.");
+            System.out.println("Vehicle " + regNumber + " is not currently parked.");
         }
     }
 
-    public void displayParkedVehicles() {
+    void displayParkedVehicles() {
         System.out.println("\n--- Currently Parked Vehicles ---");
         if (parkedVehicles.isEmpty()) {
             System.out.println("No vehicles are currently parked.");
@@ -51,8 +47,7 @@ public class SmartParkingSlotManager {
         int choice;
 
         do {
-            System.out.println("\n===== Smart Parking Slot Manager =====");
-            System.out.println("1. Vehicle Enters Parking");
+            System.out.println("\n1. Vehicle Enters Parking");
             System.out.println("2. Vehicle Exits Parking");
             System.out.println("3. Search Vehicle");
             System.out.println("4. Display All Parked Vehicles");
@@ -60,27 +55,21 @@ public class SmartParkingSlotManager {
             System.out.print("Enter choice: ");
             choice = Integer.parseInt(sc.nextLine().trim());
 
-            switch (choice) {
-                case 1:
-                    System.out.print("Enter vehicle registration number: ");
-                    manager.enterParking(sc.nextLine());
-                    break;
-                case 2:
-                    System.out.print("Enter vehicle registration number: ");
-                    manager.exitParking(sc.nextLine());
-                    break;
-                case 3:
-                    System.out.print("Enter vehicle registration number to search: ");
-                    manager.searchVehicle(sc.nextLine());
-                    break;
-                case 4:
-                    manager.displayParkedVehicles();
-                    break;
-                case 5:
-                    System.out.println("Exiting Parking Manager. Goodbye!");
-                    break;
-                default:
-                    System.out.println("Invalid choice.");
+            if (choice == 1) {
+                System.out.print("Enter vehicle registration number: ");
+                manager.enterParking(sc.nextLine());
+            } else if (choice == 2) {
+                System.out.print("Enter vehicle registration number: ");
+                manager.exitParking(sc.nextLine());
+            } else if (choice == 3) {
+                System.out.print("Enter vehicle registration number to search: ");
+                manager.searchVehicle(sc.nextLine());
+            } else if (choice == 4) {
+                manager.displayParkedVehicles();
+            } else if (choice == 5) {
+                System.out.println("Bye!");
+            } else {
+                System.out.println("Invalid choice.");
             }
         } while (choice != 5);
 
