@@ -1,0 +1,319 @@
+SQL COMMANDS QUICK REFERENCE GUIDE
+==================================
+
+1. DDL (Data Definition Language) COMMANDS
+===========================================
+
+Purpose: Define database structure and schema
+
+CREATE DATABASE database_name;
+- Creates a new database
+
+CREATE TABLE table_name (
+    column1 data_type constraint,
+    column2 data_type constraint,
+    PRIMARY KEY (column1)
+);
+- Creates a new table with specified columns and constraints
+
+ALTER TABLE table_name
+ADD COLUMN column_name data_type;
+- Adds a new column to existing table
+
+ALTER TABLE table_name
+MODIFY COLUMN column_name new_data_type;
+- Changes data type of existing column
+
+ALTER TABLE table_name
+DROP COLUMN column_name;
+- Removes a column from table
+
+ALTER TABLE table_name
+ADD PRIMARY KEY (column_name);
+- Adds primary key constraint
+
+ALTER TABLE table_name
+ADD FOREIGN KEY (column_name) REFERENCES other_table(column_name);
+- Adds foreign key constraint for referential integrity
+
+CREATE INDEX index_name ON table_name(column_name);
+- Creates index for faster queries
+
+DROP INDEX index_name ON table_name;
+- Removes an index
+
+DROP TABLE table_name;
+- Deletes entire table and data
+
+RENAME TABLE old_name TO new_name;
+- Renames a table
+
+TRUNCATE TABLE table_name;
+- Removes all data but keeps table structure
+
+
+2. DML (Data Manipulation Language) COMMANDS
+=============================================
+
+Purpose: Manipulate data within tables
+
+INSERT INTO table_name (column1, column2, ...)
+VALUES (value1, value2, ...);
+- Adds one row to table
+
+INSERT INTO table_name
+VALUES (value1, value2, ...);
+- Adds row with all columns (order must match)
+
+INSERT INTO table_name (column1, column2, ...)
+VALUES (value1, value2, ...),
+       (value3, value4, ...),
+       (value5, value6, ...);
+- Adds multiple rows at once
+
+UPDATE table_name
+SET column1 = value1, column2 = value2
+WHERE condition;
+- Modifies existing records matching condition
+
+UPDATE table_name
+SET column_name = column_name + value
+WHERE condition;
+- Increments/decrements column values
+
+DELETE FROM table_name
+WHERE condition;
+- Deletes records matching condition
+
+DELETE FROM table_name;
+- Deletes all records from table
+
+
+3. DQL (Data Query Language) COMMANDS
+======================================
+
+Purpose: Retrieve data from tables
+
+SELECT * FROM table_name;
+- Retrieves all columns and rows
+
+SELECT column1, column2, ... FROM table_name;
+- Retrieves specific columns
+
+SELECT DISTINCT column_name FROM table_name;
+- Retrieves unique values only
+
+SELECT * FROM table_name WHERE condition;
+- Retrieves records matching WHERE condition
+
+SELECT * FROM table_name ORDER BY column_name ASC/DESC;
+- Sorts results ascending or descending
+
+SELECT * FROM table_name LIMIT number;
+- Limits number of rows returned
+
+SELECT COUNT(*) FROM table_name;
+- Counts total rows
+
+SELECT COUNT(DISTINCT column_name) FROM table_name;
+- Counts distinct values
+
+SELECT SUM(column_name) FROM table_name;
+- Sums numeric column values
+
+SELECT AVG(column_name) FROM table_name;
+- Calculates average of numeric column
+
+SELECT MAX(column_name), MIN(column_name) FROM table_name;
+- Finds maximum and minimum values
+
+SELECT column_name, COUNT(*) FROM table_name
+GROUP BY column_name;
+- Groups results and counts per group
+
+SELECT column_name, COUNT(*) FROM table_name
+GROUP BY column_name
+HAVING COUNT(*) > number;
+- Filters grouped results using HAVING
+
+SELECT * FROM table1
+INNER JOIN table2 ON table1.id = table2.id;
+- Joins tables where conditions match
+
+SELECT * FROM table1
+LEFT JOIN table2 ON table1.id = table2.id;
+- Joins tables, keeping all rows from left table
+
+SELECT * FROM table1
+RIGHT JOIN table2 ON table1.id = table2.id;
+- Joins tables, keeping all rows from right table
+
+SELECT * FROM table1
+FULL OUTER JOIN table2 ON table1.id = table2.id;
+- Joins tables, keeping all rows from both
+
+SELECT * FROM table_name WHERE column_name IN (value1, value2, value3);
+- Checks if value is in list
+
+SELECT * FROM table_name WHERE column_name BETWEEN value1 AND value2;
+- Checks if value is in range
+
+SELECT * FROM table_name WHERE column_name LIKE 'pattern%';
+- Searches using pattern matching (% = any characters)
+
+SELECT * FROM table_name WHERE condition1 AND condition2;
+- Multiple conditions (all must be true)
+
+SELECT * FROM table_name WHERE condition1 OR condition2;
+- Multiple conditions (any can be true)
+
+
+4. DATA TYPES
+=============
+
+Numeric:
+- INT: Integer numbers
+- DECIMAL(p,s): Fixed-point numbers with precision and scale
+- FLOAT: Floating-point numbers
+
+String:
+- VARCHAR(n): Variable-length string, max n characters
+- CHAR(n): Fixed-length string, exactly n characters
+- TEXT: Large text data
+
+Date/Time:
+- DATE: Stores date (YYYY-MM-DD)
+- TIME: Stores time (HH:MM:SS)
+- DATETIME: Stores date and time
+- TIMESTAMP: Auto-updated timestamp
+
+Boolean:
+- BOOLEAN: TRUE or FALSE
+
+Special:
+- ENUM: Choice from predefined list
+- JSON: JSON formatted data
+
+
+5. CONSTRAINTS
+==============
+
+PRIMARY KEY: Uniquely identifies each row
+FOREIGN KEY: Links to primary key in another table
+NOT NULL: Column must have a value
+UNIQUE: Values in column must be unique
+DEFAULT: Default value if not specified
+CHECK: Validates data meets a condition
+
+
+6. OPERATORS
+============
+
+Comparison: =, !=, <>, <, >, <=, >=
+Logical: AND, OR, NOT
+Arithmetic: +, -, *, /, %
+LIKE: Pattern matching ('%' wildcard)
+IN: Value in list
+BETWEEN: Value in range
+IS NULL: Checks for NULL
+
+
+7. COMMON FUNCTIONS
+====================
+
+String:
+- UPPER(text): Converts to uppercase
+- LOWER(text): Converts to lowercase
+- LENGTH(text): Returns string length
+- SUBSTRING(text, start, length): Extracts substring
+- CONCAT(text1, text2, ...): Combines strings
+- TRIM(text): Removes leading/trailing spaces
+- REPLACE(text, old, new): Replaces text
+
+Math:
+- ABS(number): Absolute value
+- ROUND(number, decimals): Rounds to decimals
+- CEIL(number): Rounds up
+- FLOOR(number): Rounds down
+- SQRT(number): Square root
+- POWER(number, power): Raises to power
+
+Date:
+- NOW(): Current date and time
+- CURDATE(): Current date
+- YEAR(date): Extracts year
+- MONTH(date): Extracts month
+- DAY(date): Extracts day
+- DATEDIFF(date1, date2): Difference in days
+- DATE_ADD(date, INTERVAL): Adds interval to date
+
+Aggregate:
+- COUNT(): Counts rows
+- SUM(): Sums values
+- AVG(): Calculates average
+- MAX(): Finds maximum
+- MIN(): Finds minimum
+
+
+8. BEST PRACTICES
+=================
+
+✓ Use meaningful table and column names
+✓ Always use WHERE clause to limit data
+✓ Create indexes on frequently queried columns
+✓ Avoid SELECT * when possible
+✓ Use LIMIT to restrict result sets
+✓ Use transactions for multiple operations
+✓ Validate input data before INSERT/UPDATE
+✓ Backup data before DELETE operations
+✓ Use prepared statements to prevent SQL injection
+✓ Normalize database to reduce redundancy
+✓ Document your schema and queries
+✓ Regular maintenance and optimization
+
+
+9. PERFORMANCE TIPS
+====================
+
+- Index columns used in WHERE and JOIN
+- Avoid functions in WHERE clause
+- Use EXPLAIN to analyze query performance
+- Normalize tables to reduce data redundancy
+- Archive old data regularly
+- Use appropriate data types (smaller = faster)
+- Avoid SELECT * when not needed
+- Use LIMIT to reduce result sets
+- Join tables efficiently
+- Update statistics regularly
+
+
+10. EXAMPLE: COVID DATABASE
+============================
+
+Create Tables:
+CREATE TABLE covid_cases (
+    case_id INT PRIMARY KEY AUTO_INCREMENT,
+    date_recorded DATE NOT NULL,
+    state VARCHAR(50) NOT NULL,
+    confirmed_cases INT,
+    recoveries INT DEFAULT 0
+);
+
+Insert Data:
+INSERT INTO covid_cases (date_recorded, state, confirmed_cases, recoveries)
+VALUES ('2023-01-01', 'Maharashtra', 450, 420);
+
+Query Data:
+SELECT state, SUM(confirmed_cases) as total
+FROM covid_cases
+GROUP BY state
+ORDER BY total DESC;
+
+Update Data:
+UPDATE covid_cases
+SET recoveries = recoveries + 50
+WHERE state = 'Maharashtra';
+
+Delete Data:
+DELETE FROM covid_cases
+WHERE confirmed_cases = 0;

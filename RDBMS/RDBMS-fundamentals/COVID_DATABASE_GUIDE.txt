@@ -1,0 +1,230 @@
+COVID-19 DATABASE DESIGN GUIDE
+================================
+
+1. RDBMS FUNDAMENTALS
+=====================
+
+What is RDBMS?
+- Relational Database Management System
+- Stores data in structured tables with rows and columns
+- Uses SQL (Structured Query Language) for data operations
+- Ensures data integrity and security
+
+Key Concepts:
+
+A. Tables
+   - Collection of related data entries
+   - Consists of rows (records) and columns (fields)
+   - Each table has a primary key (unique identifier)
+
+B. Rows & Columns
+   - Row: A single record with all its attributes
+   - Column: A single attribute or field name
+   - Example: In covid_cases table, each row represents cases on a specific date in a state
+
+C. Keys
+   - Primary Key: Uniquely identifies each row (case_id, death_id, vaccine_id)
+   - Foreign Key: Links data between tables (case_id in covid_deaths references covid_cases)
+
+D. Relationships
+   - One-to-Many: One case can have multiple deaths (linked via case_id)
+   - Many-to-One: Many vaccines belong to one state
+
+E. Data Integrity
+   - Referential Integrity: Foreign key constraints ensure valid references
+   - Domain Integrity: CHECK constraints validate data ranges
+   - NOT NULL: Ensures required fields have values
+   - UNIQUE: Prevents duplicate values
+
+F. Normalization Basics
+   - Reduces data redundancy
+   - Improves data consistency
+   - Our schema is in 3NF (Third Normal Form)
+
+
+2. DATASET MAPPING (CSV to SQL)
+================================
+
+Original CSV Columns → Database Columns (Data Type Selection)
+
+Date → date_recorded (DATE)
+  - Stores date in YYYY-MM-DD format
+  - Example: 2023-01-01
+
+Time → Not used (granularity at day level)
+
+State/Union Territory → state (VARCHAR(50))
+  - Stores state names as text
+  - Example: 'Maharashtra', 'Delhi'
+
+Confirmed Indian National → confirmed_indian_national (INT)
+  - Stores count of confirmed cases among Indian nationals
+  - Example: 450
+
+Confirmed Foreign National → confirmed_foreign_national (INT)
+  - Stores count of confirmed cases among foreign nationals
+  - Example: 25
+
+Cured → recoveries (INT)
+  - Stores recovery count
+  - Example: 420
+
+Deaths → deaths (INT)
+  - Stored in separate table (covid_deaths)
+  - Example: 5
+
+Confirmed → confirmed_cases (INT)
+  - Total confirmed cases (calculated as Indian + Foreign)
+  - Example: 475
+
+
+3. COVID DATABASE SCHEMA DESIGN
+================================
+
+Table 1: covid_cases
+Columns:
+- case_id (INT, Primary Key, Auto Increment)
+- date_recorded (DATE, NOT NULL)
+- state (VARCHAR(50), NOT NULL)
+- confirmed_indian_national (INT, Default 0)
+- confirmed_foreign_national (INT, Default 0)
+- confirmed_cases (INT)
+- recoveries (INT, Default 0)
+- created_at (TIMESTAMP, Auto-timestamp)
+
+Purpose: Stores COVID-19 case data by state and date
+Indexes: date_recorded, state for fast queries
+
+Table 2: covid_deaths
+Columns:
+- death_id (INT, Primary Key, Auto Increment)
+- date_recorded (DATE, NOT NULL)
+- state (VARCHAR(50), NOT NULL)
+- deaths (INT, Default 0)
+- case_id (INT, Foreign Key)
+- created_at (TIMESTAMP, Auto-timestamp)
+
+Purpose: Tracks COVID-19 related deaths linked to cases
+Foreign Key: Ensures referential integrity with covid_cases
+
+Table 3: covid_vaccines
+Columns:
+- vaccine_id (INT, Primary Key, Auto Increment)
+- date_administered (DATE, NOT NULL)
+- state (VARCHAR(50), NOT NULL)
+- vaccine_type (VARCHAR(50))
+- doses_administered (INT, Default 0)
+- people_vaccinated (INT, Default 0)
+- fully_vaccinated (INT, Default 0)
+- created_at (TIMESTAMP, Auto-timestamp)
+
+Purpose: Tracks vaccination progress
+Indexes: date_administered, state
+
+
+4. DDL COMMANDS USED
+=====================
+
+CREATE DATABASE covid_database
+- Creates a new database for COVID-19 data
+
+CREATE TABLE covid_cases (...)
+- Creates table with specified columns and constraints
+- Defines data types and relationships
+
+CREATE INDEX idx_date_cases ON covid_cases(date_recorded)
+- Creates index for faster queries on date_recorded
+- Improves performance for WHERE clauses on dates
+
+ALTER TABLE covid_cases ADD COLUMN state_code VARCHAR(5)
+- Adds new column to existing table
+- Can add after existing columns
+
+ALTER TABLE covid_cases MODIFY COLUMN state VARCHAR(100)
+- Changes column properties (size, type, constraints)
+
+ALTER TABLE covid_deaths ADD CONSTRAINT fk_vaccine_date UNIQUE
+- Adds constraint to ensure uniqueness
+- Prevents duplicate entries
+
+DROP INDEX idx_date_cases
+- Removes index from table
+- Frees up storage space
+
+
+5. DML COMMANDS USED
+=====================
+
+INSERT INTO covid_cases (columns) VALUES (values)
+- Adds new records to table
+- Can insert single or multiple rows
+
+UPDATE covid_cases SET recoveries = recoveries + 50 WHERE state = 'Maharashtra'
+- Modifies existing records
+- WHERE clause specifies which records to update
+
+DELETE FROM covid_deaths WHERE deaths = 0
+- Removes records from table
+- Careful: DELETE affects real data
+
+
+6. DQL COMMANDS USED
+=====================
+
+SELECT * FROM covid_cases
+- Retrieves all columns and rows
+
+SELECT date_recorded, state, confirmed_cases FROM covid_cases WHERE state = 'Delhi'
+- Selective retrieval with filtering
+
+SELECT state, SUM(confirmed_cases) FROM covid_cases GROUP BY state
+- Aggregates data by groups
+
+SELECT * FROM covid_cases ORDER BY confirmed_cases DESC LIMIT 10
+- Sorts and limits results
+
+SELECT c.date_recorded, c.state, c.confirmed_cases, d.deaths FROM covid_cases c 
+LEFT JOIN covid_deaths d ON c.case_id = d.case_id
+- Combines data from multiple tables
+
+
+7. BEST PRACTICES FOLLOWED
+===========================
+
+✓ Meaningful Table Names: covid_cases, covid_deaths, covid_vaccines
+✓ Meaningful Column Names: confirmed_indian_national, fully_vaccinated
+✓ Primary Keys: Every table has unique identifier
+✓ Foreign Keys: Maintains referential integrity
+✓ Default Values: Prevents NULL values where appropriate
+✓ Appropriate Data Types: DATE for dates, INT for counts, VARCHAR for strings
+✓ Indexes: Created for frequently queried columns
+✓ Constraints: CHECK, NOT NULL, UNIQUE for data validation
+✓ Timestamps: Tracks when records were created
+✓ Normalization: Separate tables for different entities
+
+
+8. SAMPLE QUERIES FOR ANALYSIS
+================================
+
+Most cases by state:
+SELECT state, SUM(confirmed_cases) as total_cases 
+FROM covid_cases 
+GROUP BY state 
+ORDER BY total_cases DESC;
+
+Mortality rate by state:
+SELECT state, ROUND(SUM(deaths)/SUM(confirmed_cases)*100, 2) as mortality_rate 
+FROM covid_cases c 
+JOIN covid_deaths d ON c.case_id = d.case_id 
+GROUP BY state;
+
+Vaccination progress:
+SELECT state, SUM(people_vaccinated) as vaccinated, SUM(fully_vaccinated) as fully_vaccinated 
+FROM covid_vaccines 
+GROUP BY state;
+
+Active cases (confirmed - recovered):
+SELECT date_recorded, state, (confirmed_cases - recoveries) as active_cases 
+FROM covid_cases 
+WHERE confirmed_cases > 0 
+ORDER BY active_cases DESC;
